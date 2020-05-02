@@ -4,6 +4,7 @@ import muvsfunc
 
 
 def LimitedSharpen2(clp, ss_x=1.0, ss_y=1.0, dest_x=None, dest_y=None, Smode=4, strength=None, radius=2, Lmode=1, wide=False, overshoot=1, soft=False, edgemode=0, special=False, aSharpS=0.5, aWThresh=0.75, exborder=0):
+    core = vs.get_core()
     
     # Avisynth's Round function doesn't do quite the same thing as Python's round function.
     def AvisynthRound(value):
@@ -15,6 +16,9 @@ def LimitedSharpen2(clp, ss_x=1.0, ss_y=1.0, dest_x=None, dest_y=None, Smode=4, 
     
     def UnsharpMask(clip, strength=64, radius=3, threshold=8):
         """Ported by Myrsloik"""
+        
+        core = vs.get_core()
+        
         maxvalue = (1 << clip.format.bits_per_sample) - 1
         
         threshold = threshold * maxvalue // 255
